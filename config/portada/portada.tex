@@ -1,0 +1,158 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Plantilla TFG/TFM
+% Universidad de Murcia - Facultad de Informática
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% PORTADA - no modificar
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Se ignoran temporalmente los márgenes definidos en el documento principal.
+% Tras la portada en blanco y negro se restauran automáticamente.
+\newgeometry{ignoreall,top=2cm,outer=2cm,inner=2cm}
+
+% Parámetros tipográficos de la portada
+\def\FuenteTamano{40pt}	    % Tamaño base del título
+\def\interlinportada{4.0}    % Interlineado del título
+\def\TamTrabajo{20pt} 	    % Tamaño del tipo de trabajo
+\def\TamTrabajoIn{20pt} 	    % Espaciado tras el tipo de trabajo
+\def\TamOtros{12pt} 	    % Tamaño de datos personales
+\def\TamOtrosIn{1pt} 	    % Espaciado en datos personales
+
+% Ajuste automático del tamaño del título según su longitud
+\StrLen{\titulo}[\longitudtitulo]
+
+\ifnum\longitudtitulo>180
+  \def\FuenteTamano{35pt}
+  \def\interlinportada{3.5}
+\else
+  \ifnum\longitudtitulo>140
+    \def\FuenteTamano{40pt}
+    \def\interlinportada{4.0}
+  \else
+    \ifnum\longitudtitulo>120
+      \def\FuenteTamano{50pt}
+      \def\interlinportada{4.5}
+    \fi
+  \fi
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% INICIO DE PORTADA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{titlepage}
+
+	\newlength{\centeroffset}
+	\setlength{\centeroffset}{-0.5\oddsidemargin}
+	\addtolength{\centeroffset}{0.5\evensidemargin}
+	\thispagestyle{empty}
+	
+	% Fondo corporativo
+	\pagecolor{\colorgrado}
+	
+	% Logotipo universidad (superior izquierda)
+	\begin{tikzpicture}[overlay, remember picture, inner sep=0pt, outer sep=0pt]
+		\node[anchor=north west,inner sep=0pt] 
+		at ($(current page.north west)+(2.1cm,-2cm)$)
+		{\includegraphics[width=4.2cm]{config/logos/escudo_umu.png}};
+	\end{tikzpicture}
+	
+	% Logotipo facultad (superior derecha)
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[anchor=north west,inner sep=0pt] 
+		at ($(current page.north west)+(16.65cm,-2.8cm)$)
+	    {\includegraphics[width=2.5cm]{config/logos/FI-logo.png}};
+	\end{tikzpicture}
+	
+	% Título
+	\vfill
+	\hspace{-0.8cm}
+	\begin{tabular}{L{18cm}}
+	\begin{spacing}{\interlinportada}
+	{\raggedleft
+	{\FuenteTitulo
+	\fontsize{\FuenteTamano}{110pt}\selectfont
+	\color{\colortexto}\titulo}}
+	\vspace{-7em}
+	\end{spacing}
+	\end{tabular}
+	
+	\hfill\linebreak\\
+	
+	% Titulación
+	\begin{tabular}{lL{12cm}}
+	\raisebox{-.35\height} &
+	\begin{spacing}{1.5}
+	{\raggedleft
+	{\FuentePortada
+	\fontsize{20pt}{40pt}\selectfont
+	\color{\colortexto}\miGrado}}
+	\end{spacing}\\
+	\end{tabular}
+	
+	\vspace{2cm}
+	\vfill
+	
+	% Franja inferior negra
+	\begin{tikzpicture}[overlay, remember picture, inner sep=0pt, outer sep=0pt]
+	  \fill [umuazul] (current page.south west) 
+	  rectangle (\paperwidth,\paperheight-26.4cm);
+	  
+	  \node[anchor=south west,inner sep=0pt] 
+	  at ($(current page.south west)+(14cm,0.8cm)$)
+	  {\includegraphics[width=6.2cm]{config/logos/FI-negativo.png}};
+	\end{tikzpicture}
+	
+	% Información académica
+	\begin{textblock*}{\textwidth}(0.3cm,-2.35cm)
+	
+		{\FuentePortada 
+		\fontsize{\TamTrabajo}{45pt}\selectfont
+		\color{white}\tipotrabajo}
+		
+		\vspace{\TamTrabajoIn}
+		
+		{\FuentePortada 
+		\fontsize{\TamOtros}{30pt}\selectfont
+		\color{white} Autor:}
+		
+		\vspace{\TamOtrosIn}
+		
+		{\FuentePortada 
+		\fontsize{\TamOtros}{50pt}\selectfont
+		\color{white}\miNombre}
+		
+		\vspace{\TamOtrosIn}
+		
+		{\FuentePortada 
+		\fontsize{\TamOtros}{30pt}\selectfont
+		\color{white} Tutor/es:}
+		
+		\vspace{\TamOtrosIn}
+		
+		{\FuentePortada 
+		\fontsize{\TamOtros}{30pt}\selectfont
+		\color{white}\miTutor}
+		
+		\vspace{\TamOtrosIn}
+		
+		\ifx\miTutorB\undefined 
+		\else 
+		{\FuentePortada 
+		\fontsize{\TamOtros}{30pt}\selectfont
+		\color{white}\miTutorB} 
+		\fi
+		
+		\vspace{\TamOtrosIn}\vspace{\TamOtrosIn}
+		
+		{\FuentePortada 
+		\fontsize{\TamOtros}{30pt}\selectfont
+		\color{white}\Hoy}
+		
+	\end{textblock*}
+
+\end{titlepage}
+
+\pagecolor{white}

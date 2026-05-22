@@ -1,0 +1,90 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Plantilla TFG/TFM
+% Universidad de Murcia - Facultad de Informática
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,12pt,titlepage,oneside]{scrbook}
+
+% Título y subtítulo
+\newcommand{\titulo}{Título del Trabajo Fin de Grado}
+\newcommand{\subtitulo}{Subtítulo del proyecto}
+
+% Autor y tutores
+\newcommand{\miNombre}{Nombre Apellido1 Apellido2}
+\newcommand{\miTutor}{Nombre Apellido1 Apellido2}
+\newcommand{\miTutorB}{Nombre Apellido1 Apellido2} % opcional
+\newcommand{\miGrado}{Grado en Ingeniería Informática}
+\newcommand{\tipotrabajo}{Trabajo Fin de Grado}
+\newcommand{\miEmail}{nombre@um.es}
+\newcommand{\miDNI}{00000000A}
+\newcommand{\miUbicacion}{Murcia}
+
+% Configuración
+\input{config/umu_style.sty}
+
+% Glosario
+\input{anexos/acronimos.tex}
+\makeglossaries
+
+%%%%%%%%%%%%%%%%%%%%%%%% 
+% INICIO DEL DOCUMENTO
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+	
+	\frontmatter
+	
+	% Portadas
+	\let\origcleardoublepage\cleardoublepage
+    \let\cleardoublepage\clearpage
+    \input{config/portada/portada}
+    \input{config/portada/subportada}
+    \let\cleardoublepage\origcleardoublepage
+	
+	% Preliminares
+	\input{preambulos/1_agradecimientos}
+	\input{preambulos/2_declaracion_originalidad}
+	\input{preambulos/3_resumen}
+	\input{preambulos/4_extended_abstract}
+	
+	% Índices
+	\tableofcontents
+	\listoffigures
+	\listoftables
+	\lstlistoflistings
+	
+	\mainmatter
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% CAPÍTULOS DEL TRABAJO
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	\input{capitulos/1_introduccion}	
+	\input{capitulos/2_estado_arte}
+	\input{capitulos/3_analisis}
+	\input{capitulos/4_diseno}
+	\input{capitulos/5_conclusiones}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% BIBLIOGRAFÍA
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \bibliographystyle{plainnat}
+	\bibliography{bibliografia/bibliografia}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% LISTA DE ACRÓNIMOS
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% GLOSARIO
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \printglossary[type=acronym, style=long, title={Lista de Acrónimos y Abreviaturas}, nogroupskip]
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% ANEXOS
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	\appendix
+	\input{anexos/anexo_1}
+	
+\end{document}

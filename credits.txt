@@ -1,0 +1,20 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Plantilla TFG/TFM - Facultad de Informática, Universidad de Murcia
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Autores originales de la plantilla:
+
+- José Manuel Requena Plens      : Autor original de la plantilla.
+- Pablo José Rocamora Zamora     : Modificaciones y mejoras posteriores.
+- Adrián Cánovas Rodríguez       : Versión final con nueva identidad corporativa.
+
+Contacto original: pablojoserocamora@gmail.com
+Contacto actual: adriancr@um.es
+
+Esta plantilla tiene como objetivo facilitar la elaboración de TFG/TFM
+siguiendo el estilo corporativo de la Facultad de Informática de la 
+Universidad de Murcia.
+
+Se agradece a todos los usuarios que contribuyan reportando errores
+o sugiriendo mejoras.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

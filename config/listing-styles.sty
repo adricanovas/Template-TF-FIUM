@@ -1,0 +1,105 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Configuración de código para TFG/TFM - Facultad de Informática
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{listings}
+\RequirePackage{xcolor}
+\RequirePackage[framed,numbered]{matlab-prettifier}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CONFIGURACIÓN GLOBAL
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lstset{
+    frame=single,
+    backgroundcolor=\color{gray!10},
+    framerule=0pt,
+    framextopmargin=4pt,
+    framexbottommargin=4pt,
+    framexleftmargin=11pt,
+    framexrightmargin=0pt,
+    linewidth=\linewidth,
+    xleftmargin=\parindent,
+    basicstyle=\small\ttfamily,
+    commentstyle=\color{gray},
+    keywordstyle=\bfseries,
+    showstringspaces=false,
+    showspaces=false,
+    showtabs=false,
+    columns=fullflexible,
+    tabsize=4,
+    numbers=left,
+    numbersep=6pt,
+    numberstyle=\tiny\ttfamily\color{gray!60},
+    breaklines=true,
+    breakatwhitespace=true
+}
+
+\lstnewenvironment{listing}[1][]{
+    \lstset{#1}
+}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ESTILOS POR LENGUAJE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lstdefinestyle{Consola}{
+    basicstyle=\scriptsize\bfseries\ttfamily
+}
+
+\lstdefinestyle{C}{
+    language=C,
+    basicstyle=\scriptsize
+}
+
+\lstdefinestyle{C-color}{
+    language=C,
+    basicstyle=\scriptsize,
+    keywordstyle=\bfseries\color{green!40!black},
+    commentstyle=\itshape\color{purple!50!black},
+    stringstyle=\color{orange}
+}
+
+\lstdefinestyle{C++}{
+    language=C++,
+    basicstyle=\scriptsize
+}
+
+\lstdefinestyle{C++-color}{
+    language=C++,
+    basicstyle=\scriptsize,
+    keywordstyle=\bfseries\color{green!40!black},
+    commentstyle=\itshape\color{purple!50!black},
+    stringstyle=\color{orange}
+}
+
+\lstdefinestyle{PHP}{
+    language=PHP,
+    basicstyle=\scriptsize
+}
+
+\lstdefinestyle{Java}{
+    language=Java,
+    basicstyle=\scriptsize
+}
+
+\lstdefinestyle{Python}{
+    language=Python,
+    basicstyle=\scriptsize,
+    otherkeywords={self},
+    keywordstyle=\bfseries\color{deepblue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{deepgreen}
+}
+
+\lstdefinestyle{R}{
+    language=R,
+    basicstyle=\scriptsize,
+    keywordstyle=\bfseries
+}
+
+\lstdefinestyle{Latex}{
+    language=[LaTeX]{TeX},
+    basicstyle=\scriptsize,
+    numbers=none
+}
