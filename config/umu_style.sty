@@ -1,127 +1,214 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Configuración de código para TFG/TFM - Facultad de Informática
+% Estilo de la plantilla TFG/TFM - Facultad de Informática (UMU)
+%
+% Uso en main.tex:  \usepackage[tfg]{config/umu_style}   (o [tfm])
+%
+% Opciones:
+%   tfg           Trabajo Fin de Grado (por defecto)
+%   tfm           Trabajo Fin de Máster
+%   colorenlaces  Enlaces en los colores de la UMU (por defecto, enlaces
+%                 sin marcar: es lo adecuado para la versión impresa)
+%
+% Requiere LuaLaTeX (recomendado) o XeLaTeX.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\NeedsTeXFormat{LaTeX2e}[2022/06/01]
+\ProvidesPackage{config/umu_style}[2026/10/07 Plantilla TFG/TFM FIUM]
+
+\RequirePackage{iftex}
+\RequireTUTeX % Aborta con un mensaje claro si se compila con pdfLaTeX
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% CLASE Y FORMATO GENERAL
+% OPCIONES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage{scrhack} % previene conflictos con KOMA
-\RequirePackage[automark,headsepline,footsepline]{scrlayer-scrpage}
-\KOMAoption{toc}{bib,chapterentryfill}
+\newif\ifumu@tfm
+\newif\ifumu@colorenlaces
+\DeclareOption{tfg}{\umu@tfmfalse}
+\DeclareOption{tfm}{\umu@tfmtrue}
+\DeclareOption{colorenlaces}{\umu@colorenlacestrue}
+\DeclareOption*{\PackageWarning{config/umu_style}{Opción desconocida: `\CurrentOption'}}
+\ProcessOptions\relax
 
+% Tipo de trabajo, derivado de la opción tfg/tfm
+\ifumu@tfm
+  \providecommand{\tipotrabajo}{Trabajo Fin de Máster}
+  \providecommand{\tipotrabajoCorto}{TFM}
+\else
+  \providecommand{\tipotrabajo}{Trabajo Fin de Grado}
+  \providecommand{\tipotrabajoCorto}{TFG}
+\fi
+
+% Valores por defecto de los datos del trabajo. Los opcionales pueden
+% dejarse vacíos o borrarse de main.tex.
+\providecommand{\titulo}{Título del trabajo}
+\providecommand{\subtitulo}{}
+\providecommand{\miNombre}{}
+\providecommand{\miTutor}{}
+\providecommand{\miDepartamentoTutor}{}
+\providecommand{\miTutorB}{}
+\providecommand{\miDepartamentoTutorB}{}
+\providecommand{\miGrado}{}
+\providecommand{\miEmail}{}
+\providecommand{\miDNI}{}
+\providecommand{\miUbicacion}{Murcia}
+\providecommand{\miFecha}{\today}
+\providecommand{\Hoy}{\miFecha} % Compatibilidad con versiones anteriores
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% IDIOMA, PÁGINA Y CABECERAS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage[english,spanish,es-nolayout,es-tabla]{babel} % El último idioma es el principal
+\RequirePackage{scrhack} % Corrige incompatibilidades de otros paquetes con KOMA
+
+% Márgenes del cuerpo. En twoside, inner es el margen del lomo.
+\RequirePackage[a4paper,top=2.5cm,bottom=2.5cm,inner=3cm,outer=2.5cm,
+  headsep=0.8cm,footskip=1.2cm]{geometry}
+
+\RequirePackage[automark,headsepline]{scrlayer-scrpage}
+\KOMAoptions{toc=bib,toc=chapterentryfill}
 \clearpairofpagestyles
 \ihead{{\color{gray30}\scshape\small\headmark}}
-\ohead{\normalfont\pagemark}
+\ohead{\pagemark}
+\ofoot[\pagemark]{} % Número de página al pie en las páginas de inicio de capítulo
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection. #1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% PAQUETES BÁSICOS
+% COLORES CORPORATIVOS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage[spanish, es-nolayout]{babel}
 \RequirePackage{xcolor}
-\RequirePackage{geometry}
+\definecolor{umurojo}{RGB}{121,11,21}
+\definecolor{umuazul}{RGB}{0,33,43}
+\definecolor{gray30}{gray}{.30}
+
+\newcommand{\colorgrado}{umurojo} % Color de fondo de la portada
+\newcommand{\colortexto}{white}   % Color del texto de la portada
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FUENTES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{fontspec}
+% IBM Plex Sans (incluida en TeX Live y Overleaf), cargada por nombre de
+% fichero para no depender de las fuentes instaladas en el sistema.
+\newfontfamily\FuentePortada{IBMPlexSans}[
+  Extension=.otf, UprightFont=*-Regular, BoldFont=*-Bold,
+  ItalicFont=*-Italic, BoldItalicFont=*-BoldItalic]
+\let\FuenteTitulo\FuentePortada
+\RequirePackage{microtype}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FIGURAS, TABLAS, LISTAS Y MATEMÁTICAS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \RequirePackage{graphicx}
-\RequirePackage{subcaption}
+\graphicspath{{figuras/}}
 \RequirePackage{caption}
+\captionsetup{font=small,labelfont=bf}
+\captionsetup[figure]{justification=centering,singlelinecheck=false}
+\RequirePackage{subcaption}
 \RequirePackage{tikz}
 \usetikzlibrary{calc}
 \RequirePackage{setspace}
-\RequirePackage{textpos}
-\RequirePackage{fontspec}
-\RequirePackage{xstring}
-\RequirePackage{xifthen}
-\RequirePackage{calc}
-\RequirePackage{mathtools,amsthm,amsfonts,amssymb,bm,mathrsfs,upgreek}
-\RequirePackage{longtable,booktabs,array,multirow,tabularx,ragged2e}
-\usepackage[acronym]{glossaries-extra}
-\RequirePackage[numbers,sort]{natbib}
-\RequirePackage{breakcites}
-\RequirePackage[framed,numbered]{matlab-prettifier}
-\RequirePackage{listings}
-\RequirePackage{framed,mdframed}
-\RequirePackage{afterpage,verbatim,url,float,lscape,placeins}
-\RequirePackage{caption}
-\captionsetup[figure]{justification=centering,singlelinecheck=false}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% COLORES
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\definecolor{umurojo}{RGB}{121,11,21}
-\definecolor{umurojointenso}{RGB}{224,59,35}
-\definecolor{umuazul}{RGB}{0,33,43}
-\definecolor{gray97}{gray}{.97}
-\definecolor{gray75}{gray}{.75}
-\definecolor{gray45}{gray}{.45}
-\definecolor{gray30}{gray}{.30}
-\definecolor{dkgreen}{rgb}{0,.6,0}
-\definecolor{dkblue}{rgb}{0,0,.6}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
-\definecolor{deepblue}{rgb}{0,0,0.5}
-\definecolor{deepred}{rgb}{0.6,0,0}
-\definecolor{deepgreen}{rgb}{0,0.5,0}
-\definecolor{greencomments}{rgb}{0,0.5,0}
-\definecolor{redstrings}{rgb}{0.9,0,0}
-\definecolor{bluekeywords}{rgb}{0.13,0.13,1}
-\definecolor{blanco}{rgb}{255,255,255}
-
-\newcommand{\colortexto}{blanco}
-\newcommand{\colorgrado}{umurojo}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% FUENTES PORTADA
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\usepackage{fontspec}
-\newfontfamily\FuenteTitulo{IBM Plex Sans}
-\newfontfamily\FuentePortada{IBM Plex Sans}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% FECHA
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\RequirePackage{datetime2}
-\newcommand{\Hoy}{\DTMtoday}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% TABLAS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\RequirePackage{booktabs,array}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\arraybackslash}m{#1}}
+\RequirePackage{enumitem}
+\RequirePackage{mathtools,amssymb}
+\RequirePackage{csquotes}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% GLOSARIO
+% CÓDIGO FUENTE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\setabbreviationstyle[acronym]{long-short}
-\glssetcategoryattribute{acronym}{nogroupskip}{true}
+\RequirePackage{config/listing-styles}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% LISTINGS
+% BIBLIOGRAFÍA (biblatex + biber)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-%\RequirePackage{config/listing-styles}
+\RequirePackage[backend=biber,style=numeric-comp,sorting=nyt,
+  maxbibnames=6,minbibnames=3,urldate=long]{biblatex}
+\RequirePackage{xurl} % Permite partir las URL largas en cualquier punto
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % HIPERREFERENCIAS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage{hyperref}
-\hypersetup{
-    pdfauthor={\miNombre\ (\miEmail)},
-    pdftitle={\titulo}
-}
+\ifumu@colorenlaces
+  \hypersetup{colorlinks,linkcolor=umurojo,citecolor=umurojo,
+    urlcolor=umuazul,filecolor=umuazul}
+\else
+  \hypersetup{hidelinks}
+\fi
+\RequirePackage{bookmark}
+\AtBeginDocument{%
+  \hypersetup{pdftitle={\titulo},pdfauthor={\miNombre},
+    pdfsubject={\tipotrabajo}}}
+\RequirePackage[spanish,noabbrev]{cleveref}
+\crefname{table}{tabla}{tablas}   % Coherente con es-tabla
+\Crefname{table}{Tabla}{Tablas}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ENTORNOS MATEMÁTICOS
+% ACRÓNIMOS (glossaries-extra, después de hyperref)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newtheorem{teorema}{Teorema}[chapter]
-\newtheorem{ejemplo}{Ejemplo}[chapter]
-\newtheorem{definicion}{Definición}[chapter]
+% automake ejecuta makeindex durante la compilación: no hace falta lanzar
+% makeglossaries a mano ni configurar el editor.
+\RequirePackage[acronym,nomain,automake=immediate,nogroupskip]{glossaries-extra}
+\setabbreviationstyle[acronym]{long-short}
+\makeglossaries
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ÍNDICES QUE SOLO SE IMPRIMEN SI TIENEN CONTENIDO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Se anota en el .aux si el documento tiene figuras, tablas o listados con
+% título; en la compilación siguiente se omiten los índices vacíos.
+\newif\ifumu@figuras
+\newif\ifumu@tablas
+\newif\ifumu@listados
+\newif\ifumu@usafiguras
+\newif\ifumu@usatablas
+\newif\ifumu@usalistados
+\AddToHook{env/figure/begin}{\global\umu@usafigurastrue}
+\AddToHook{env/table/begin}{\global\umu@usatablastrue}
+\AddToHook{cmd/lst@MakeCaption/before}{%
+  \ifx\lst@caption\@empty\else\global\umu@usalistadostrue\fi}
+\AtEndDocument{%
+  \if@filesw
+    \ifumu@usafiguras\immediate\write\@auxout{\global\string\umu@figurastrue}\fi
+    \ifumu@usatablas\immediate\write\@auxout{\global\string\umu@tablastrue}\fi
+    \ifumu@usalistados\immediate\write\@auxout{\global\string\umu@listadostrue}\fi
+  \fi}
+
+\newcommand{\indices}{%
+  \tableofcontents
+  \ifumu@figuras\listoffigures\fi
+  \ifumu@tablas\listoftables\fi
+  \ifumu@listados\lstlistoflistings\fi}
+
+% Lista de acrónimos (solo aparece si se ha usado alguno con \gls)
+\newcommand{\listaacronimos}{%
+  \printglossary[type=acronym,style=long,title={Lista de acrónimos}]}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% UTILIDADES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \siVacio{\macro}{si está vacía}{si no lo está}
+% \siNoVacio{\macro}{texto}: escribe el texto solo si \macro no está vacía
+\newcommand{\siVacio}[3]{\expandafter\IfBlankTF\expandafter{#1}{#2}{#3}}
+\newcommand{\siNoVacio}[2]{\siVacio{#1}{}{#2}}
+
+
+% Palabras clave para el resumen y el abstract
+\newcommand{\palabrasclave}[1]{\par\medskip\noindent\textbf{Palabras clave:} #1}
+\newcommand{\keywords}[1]{\par\medskip\noindent\textbf{Keywords:} #1}
+
+\endinput

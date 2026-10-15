@@ -1,15 +1,56 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Plantilla TFG/TFM
-% Universidad de Murcia. Facultad de Informática
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Analisis de objetivos y metodologia}
+\chapter{Análisis de objetivos y metodología}
+\label{cap:analisis}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce convallis facilisis cursus. Duis convallis orci quam, sit amet lacinia massa tempus sit amet. Maecenas semper nec neque ac venenatis. Donec vehicula nibh sit amet dictum suscipit. Aenean vitae eros ut lacus molestie sagittis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pellentesque fermentum ante non convallis.
+En este capítulo se detallan los objetivos y la metodología seguida. También muestra cómo incluir figuras y tablas.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth]{figuras/default.png}
-    \caption{Caption}
-    \label{fig:figure2}
+\section{Figuras}
+
+Las imágenes se guardan en la carpeta \texttt{figuras/} y se incluyen por su nombre, sin la ruta. La \cref{fig:ejemplo} es una figura simple y la \cref{fig:subfiguras} contiene dos subfiguras, \cref{fig:sub-a,fig:sub-b}.
+
+\begin{figure}[htbp]
+  \centering
+  % Con tus imágenes: \includegraphics[width=0.6\textwidth]{mi-imagen}
+  \includegraphics[width=0.5\textwidth]{example-image}
+  \caption{Ejemplo de figura.}
+  \label{fig:ejemplo}
 \end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{example-image-a}
+    \caption{Primera subfigura.}
+    \label{fig:sub-a}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{example-image-b}
+    \caption{Segunda subfigura.}
+    \label{fig:sub-b}
+  \end{subfigure}
+  \caption{Ejemplo de figura con subfiguras.}
+  \label{fig:subfiguras}
+\end{figure}
+
+\section{Tablas}
+
+Las tablas se componen sin líneas verticales y con las reglas horizontales de \texttt{booktabs}: \verb|\toprule|, \verb|\midrule| y \verb|\bottomrule|. El título de una tabla va encima, como en la \cref{tab:ejemplo}.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Ejemplo de tabla.}
+  \label{tab:ejemplo}
+  \begin{tabular}{L{4cm}C{3cm}R{3cm}}
+    \toprule
+    \textbf{Tarea} & \textbf{Semanas} & \textbf{Horas} \\
+    \midrule
+    Análisis       & 3 & 45 \\
+    Diseño         & 4 & 60 \\
+    Implementación & 8 & 150 \\
+    \midrule
+    \textbf{Total} & 15 & 255 \\
+    \bottomrule
+  \end{tabular}
+\end{table}

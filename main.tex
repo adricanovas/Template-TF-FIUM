@@ -1,90 +1,98 @@
+% !TEX program = lualatex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Plantilla TFG/TFM
 % Universidad de Murcia - Facultad de Informática
+%
+% Compilar con LuaLaTeX (en Overleaf: Menú > Compilador > LuaLaTeX).
+% Ver README.md para más detalles.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[a4paper,12pt,titlepage,oneside]{scrbook}
 
-% Título y subtítulo
+% oneside: versión digital (PDF).
+% twoside: versión impresa a doble cara (márgenes de lomo y páginas en
+%          blanco para que cada capítulo empiece en página impar).
+\documentclass[a4paper,12pt,oneside,numbers=noenddot]{scrbook}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DATOS DEL TRABAJO
+% Los campos marcados como opcionales pueden dejarse vacíos: {}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \newcommand{\titulo}{Título del Trabajo Fin de Grado}
-\newcommand{\subtitulo}{Subtítulo del proyecto}
+\newcommand{\subtitulo}{Subtítulo del proyecto}                % opcional
 
-% Autor y tutores
 \newcommand{\miNombre}{Nombre Apellido1 Apellido2}
-\newcommand{\miTutor}{Nombre Apellido1 Apellido2}
-\newcommand{\miTutorB}{Nombre Apellido1 Apellido2} % opcional
-\newcommand{\miGrado}{Grado en Ingeniería Informática}
-\newcommand{\tipotrabajo}{Trabajo Fin de Grado}
-\newcommand{\miEmail}{nombre@um.es}
 \newcommand{\miDNI}{00000000A}
+\newcommand{\miEmail}{nombre@um.es}
+\newcommand{\miGrado}{Grado en Ingeniería Informática}
+
+\newcommand{\miTutor}{Nombre Apellido1 Apellido2}
+\newcommand{\miDepartamentoTutor}{}                            % opcional
+\newcommand{\miTutorB}{Nombre Apellido1 Apellido2}             % opcional
+\newcommand{\miDepartamentoTutorB}{}                           % opcional
+
 \newcommand{\miUbicacion}{Murcia}
+\newcommand{\miFecha}{\today} % o una fecha fija: {15 de junio de 2026}
 
-% Configuración
-\input{config/umu_style.sty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ESTILO
+%   tfg | tfm      Tipo de trabajo (cambia portada, declaración, etc.)
+%   colorenlaces   Enlaces en color (para la versión digital)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Glosario
-\input{anexos/acronimos.tex}
-\makeglossaries
+\usepackage[tfg]{config/umu_style}
 
-%%%%%%%%%%%%%%%%%%%%%%%% 
-% INICIO DEL DOCUMENTO
-%%%%%%%%%%%%%%%%%%%%%%%%
+\addbibresource{bibliografia/bibliografia.bib}
+\input{anexos/acronimos}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENTO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-	
-	\frontmatter
-	
-	% Portadas
-	\let\origcleardoublepage\cleardoublepage
-    \let\cleardoublepage\clearpage
-    \input{config/portada/portada}
-    \input{config/portada/subportada}
-    \let\cleardoublepage\origcleardoublepage
-	
-	% Preliminares
-	\input{preambulos/1_agradecimientos}
-	\input{preambulos/2_declaracion_originalidad}
-	\input{preambulos/3_resumen}
-	\input{preambulos/4_extended_abstract}
-	
-	% Índices
-	\tableofcontents
-	\listoffigures
-	\listoftables
-	\lstlistoflistings
-	
-	\mainmatter
-	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	% CAPÍTULOS DEL TRABAJO
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
-	\input{capitulos/1_introduccion}	
-	\input{capitulos/2_estado_arte}
-	\input{capitulos/3_analisis}
-	\input{capitulos/4_diseno}
-	\input{capitulos/5_conclusiones}
-	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	% BIBLIOGRAFÍA
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    \bibliographystyle{plainnat}
-	\bibliography{bibliografia/bibliografia}
-	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	% LISTA DE ACRÓNIMOS
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	% GLOSARIO
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \printglossary[type=acronym, style=long, title={Lista de Acrónimos y Abreviaturas}, nogroupskip]
-	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	% ANEXOS
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
-	\appendix
-	\input{anexos/anexo_1}
-	
+\frontmatter
+
+% Portadas
+\input{config/portada/portada}
+\input{config/portada/subportada}
+
+% Preliminares (comenta los opcionales que no uses)
+\input{preambulos/1_preambulo}                 % opcional
+\input{preambulos/2_agradecimientos}           % opcional
+\input{preambulos/3_dedicatoria}               % opcional
+\input{preambulos/4_cita}                      % opcional
+\input{preambulos/5_declaracion_originalidad}
+\input{preambulos/6_resumen}
+\input{preambulos/7_abstract}
+\input{preambulos/8_extended_abstract}
+
+% Índice general y, si hay contenido, índices de figuras, tablas y listados
+\indices
+
+\mainmatter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CAPÍTULOS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{capitulos/1_introduccion}
+\input{capitulos/2_estado_arte}
+\input{capitulos/3_analisis}
+\input{capitulos/4_diseno}
+\input{capitulos/5_conclusiones}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BIBLIOGRAFÍA Y ACRÓNIMOS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\printbibliography[heading=bibintoc]
+\listaacronimos
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ANEXOS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+\input{anexos/anexo_1}
+
 \end{document}

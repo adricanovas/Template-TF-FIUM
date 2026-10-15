@@ -1,9 +1,23 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Plantilla TFG/TFM
-% Universidad de Murcia. Facultad de Informática
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Introduccion}
+\chapter{Introducción}
+\label{cap:introduccion}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce convallis facilisis cursus. Duis convallis orci quam, sit amet lacinia massa tempus sit amet. Maecenas semper nec neque ac venenatis. Donec vehicula nibh sit amet dictum suscipit. Aenean vitae eros ut lacus molestie sagittis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pellentesque fermentum ante non convallis.
-\gls{ieee}
+Este capítulo presenta el contexto del trabajo, la motivación y los objetivos, y describe cómo se organiza el resto del documento. Los capítulos de esta plantilla incluyen ejemplos de uso: consulta su código fuente para ver cómo se hace cada cosa y sustituye el texto por el tuyo.
+
+\section{Motivación}
+
+Explica aquí el problema que se aborda y por qué es relevante. Los acrónimos se definen en \texttt{anexos/acronimos.tex} y se usan con \verb|\gls{etiqueta}|: la primera vez se escribe la forma completa, como en \gls{tfg} o \gls{api}, y las siguientes solo la sigla: \gls{tfg}, \gls{api}. La lista de acrónimos al final del documento solo incluye los que se han usado.
+
+\section{Objetivos}
+
+Las listas se escriben con \texttt{itemize} o \texttt{enumerate}:
+
+\begin{enumerate}
+  \item Objetivo principal del trabajo.
+  \item Primer objetivo específico.
+  \item Segundo objetivo específico.
+\end{enumerate}
+
+\section{Estructura del documento}
+
+Para referirse a otras partes del documento se usa \verb|\cref{etiqueta}|, que añade automáticamente el tipo de elemento: el \cref{cap:estado-arte} revisa el estado del arte, el \cref{cap:analisis} describe los objetivos y la metodología, el \cref{cap:diseno} recoge el diseño y el \cref{cap:conclusiones} presenta las conclusiones. El \cref{anx:complementario} contiene material complementario.

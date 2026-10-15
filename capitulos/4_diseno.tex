@@ -1,8 +1,34 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Plantilla TFG/TFM
-% Universidad de Murcia. Facultad de Informática
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Diseño}
+\label{cap:diseno}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce convallis facilisis cursus. Duis convallis orci quam, sit amet lacinia massa tempus sit amet. Maecenas semper nec neque ac venenatis. Donec vehicula nibh sit amet dictum suscipit. Aenean vitae eros ut lacus molestie sagittis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pellentesque fermentum ante non convallis.
+En este capítulo se describe el diseño de la solución. También muestra cómo incluir código fuente y ecuaciones.
+
+\section{Código fuente}
+
+El código se incluye con el entorno \texttt{lstlisting}. Los estilos disponibles (\texttt{C}, \texttt{C++}, \texttt{Java}, \texttt{Python}, \texttt{PHP}, \texttt{R}, \texttt{Matlab}, \texttt{Latex}, \texttt{Consola}\ldots) están en \texttt{config/listing-styles.sty}. El \cref{lst:python} es un ejemplo.
+
+\begin{lstlisting}[style=Python, caption={Ejemplo de código en Python.}, label={lst:python}]
+def factorial(n: int) -> int:
+    """Calcula el factorial de n de forma recursiva."""
+    if n <= 1:
+        return 1
+    return n * factorial(n - 1)
+
+print(factorial(5))  # Imprime 120
+\end{lstlisting}
+
+También se puede incluir un fichero completo:
+
+\begin{lstlisting}[style=Latex]
+\lstinputlisting[style=Java]{codigo/Main.java}
+\end{lstlisting}
+
+\section{Ecuaciones}
+
+Las ecuaciones numeradas se escriben con el entorno \texttt{equation} y se referencian igual que el resto de elementos, como la \cref{eq:complejidad}:
+
+\begin{equation}
+  T(n) = \sum_{i=1}^{n} i = \frac{n(n+1)}{2} \in O(n^2)
+  \label{eq:complejidad}
+\end{equation}
