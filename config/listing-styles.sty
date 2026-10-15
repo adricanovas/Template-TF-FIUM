@@ -2,9 +2,19 @@
 % Configuración de código para TFG/TFM - Facultad de Informática
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\ProvidesPackage{config/listing-styles}[2026/10/07 Estilos de código TFG/TFM FIUM]
+
 \RequirePackage{listings}
 \RequirePackage{xcolor}
-\RequirePackage[framed,numbered]{matlab-prettifier}
+
+% Colores usados por los estilos de lenguaje
+\definecolor{dkgreen}{rgb}{0,.6,0}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+% Nombres en castellano
+\renewcommand{\lstlistingname}{Listado}
+\renewcommand{\lstlistlistingname}{Índice de listados}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CONFIGURACIÓN GLOBAL
@@ -32,7 +42,12 @@
     numbersep=6pt,
     numberstyle=\tiny\ttfamily\color{gray!60},
     breaklines=true,
-    breakatwhitespace=true
+    breakatwhitespace=true,
+    extendedchars=true,
+    % Permite escribir tildes y eñes dentro del código
+    literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+             {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+             {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {ü}{{\"u}}1 {¿}{{?`}}1 {¡}{{!`}}1
 }
 
 \lstnewenvironment{listing}[1][]{
@@ -49,12 +64,12 @@
 
 \lstdefinestyle{C}{
     language=C,
-    basicstyle=\scriptsize
+    basicstyle=\scriptsize\ttfamily
 }
 
 \lstdefinestyle{C-color}{
     language=C,
-    basicstyle=\scriptsize,
+    basicstyle=\scriptsize\ttfamily,
     keywordstyle=\bfseries\color{green!40!black},
     commentstyle=\itshape\color{purple!50!black},
     stringstyle=\color{orange}
@@ -62,12 +77,12 @@
 
 \lstdefinestyle{C++}{
     language=C++,
-    basicstyle=\scriptsize
+    basicstyle=\scriptsize\ttfamily
 }
 
 \lstdefinestyle{C++-color}{
     language=C++,
-    basicstyle=\scriptsize,
+    basicstyle=\scriptsize\ttfamily,
     keywordstyle=\bfseries\color{green!40!black},
     commentstyle=\itshape\color{purple!50!black},
     stringstyle=\color{orange}
@@ -75,31 +90,40 @@
 
 \lstdefinestyle{PHP}{
     language=PHP,
-    basicstyle=\scriptsize
+    basicstyle=\scriptsize\ttfamily
 }
 
 \lstdefinestyle{Java}{
     language=Java,
-    basicstyle=\scriptsize
+    basicstyle=\scriptsize\ttfamily
 }
 
 \lstdefinestyle{Python}{
     language=Python,
-    basicstyle=\scriptsize,
+    basicstyle=\scriptsize\ttfamily,
     otherkeywords={self},
     keywordstyle=\bfseries\color{deepblue},
     commentstyle=\color{dkgreen},
     stringstyle=\color{deepgreen}
 }
 
+\lstdefinestyle{Matlab}{
+    language=Matlab,
+    basicstyle=\scriptsize\ttfamily,
+    keywordstyle=\bfseries\color{deepblue},
+    commentstyle=\color{dkgreen}
+}
+
 \lstdefinestyle{R}{
     language=R,
-    basicstyle=\scriptsize,
+    basicstyle=\scriptsize\ttfamily,
     keywordstyle=\bfseries
 }
 
 \lstdefinestyle{Latex}{
     language=[LaTeX]{TeX},
-    basicstyle=\scriptsize,
+    basicstyle=\scriptsize\ttfamily,
     numbers=none
 }
+
+\endinput

@@ -1,0 +1,38 @@
+# Ficheros auxiliares de LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.lol
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+
+# biblatex / biber
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+
+# glossaries
+*.acn
+*.acr
+*.alg
+*.glo
+*.gls
+*.glg
+*.glsdefs
+*.ist
+
+# PDF generado
+main.pdf
+
+# Editores y sistema
+*~
+.DS_Store
+.vscode/
+.github
+.latexmkrc

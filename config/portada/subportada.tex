@@ -3,83 +3,60 @@
 % Universidad de Murcia - Facultad de Informática
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%
+% SUBPORTADA - no modificar
+% Los datos se toman de main.tex.
+%%%%%%%%%%%%%%%%%%%%%%%%
 
-	% Márgenes específicos para esta página
-	\newgeometry{ignoreall,top=2cm}
-	
-	% Offset horizontal para centrar correctamente el contenido
-	\setlength{\centeroffset}{-0.5\oddsidemargin}
-	\addtolength{\centeroffset}{0.5\evensidemargin}
-	\thispagestyle{empty}
-	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	% TÍTULO Y SUBTÍTULO
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
-	\begin{minipage}{\textwidth}
-	\centering
-	\begin{spacing}{1.5}
-		{\huge\bfseries \titulo}
-	\end{spacing}
-		\noindent\rule[-1ex]{\textwidth}{3pt}\\[3.5ex]
-		{\large\bfseries \subtitulo\\[4cm]}
-	\end{minipage}
-	
-	\vspace{2.5cm}
-	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	% AUTOR Y TUTORES
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
-	\begin{minipage}{\textwidth}
-		\centering
-		
-		\textbf{Autor}\\
-		{\miNombre}\\[2.5ex]
-		
-		\textbf{Tutor/es}\\
-		{\normalsize \miTutor\\
-		\ifx\departamentoTutor\undefined 
-		\else \small\textit \departamentoTutor\\ 
-		\fi
-		\ifx\miTutorB\undefined 
-		\else \normalsize \miTutorB\\ 
-		\fi
-		\ifx\departamentoTutorB\undefined 
-		\else \small\textit \departamentoTutorB\\[2cm] 
-		\fi
-		}
-	\end{minipage}
-	
-	\vspace*{\fill}
-	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	% BLOQUE INFERIOR
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
-	\begin{minipage}{\textwidth}
-		\centering
-		
-		{\includegraphics[width=6cm]{config/logos/FI-positivo.png}}\\
-		{\miGrado}
-		
-		\vspace*{2em}
-		
-		\begin{minipage}[l]{6cm}
-			\includegraphics[width=4cm]{config/logos/Logotipo_DIIC.png}
-		\end{minipage}
-		\begin{minipage}[r]{6cm}
-			\includegraphics[width=7cm]{config/logos/logo_um.png}
-		\end{minipage}
-		
-        \vspace{1cm}
-        
-		Murcia, \Hoy
-		
-	\end{minipage}
+\begin{titlepage}
+\centering
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TÍTULO Y SUBTÍTULO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{spacing}{1.3}
+  {\huge\bfseries\titulo\par}
+\end{spacing}
+\vspace{1ex}
+\rule{\textwidth}{3pt}\par
+\siNoVacio{\subtitulo}{\vspace{3ex}{\large\bfseries\subtitulo\par}}
+
+\vspace{1cm plus 1fill} % Se reduce si el título es largo
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% AUTOR Y TUTORES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textbf{Autor}\par
+\miNombre\par
+\vspace{2.5ex}
+
+\textbf{\siVacio{\miTutorB}{Tutor}{Tutores}}\par
+\miTutor\par
+\siNoVacio{\miDepartamentoTutor}{{\small\itshape\miDepartamentoTutor\par}}
+\siNoVacio{\miTutorB}{\vspace{1ex}\miTutorB\par}
+\siNoVacio{\miDepartamentoTutorB}{{\small\itshape\miDepartamentoTutorB\par}}
+
+\vfill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BLOQUE INFERIOR
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\includegraphics[width=6cm]{config/logos/FI-positivo.png}\par
+\vspace{1ex}
+\miGrado\par
+\vspace{2em}
+
+\begin{minipage}[c]{0.45\textwidth}
+  \centering\includegraphics[width=4cm]{config/logos/Logotipo_DIIC.png}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.45\textwidth}
+  \centering\includegraphics[width=\linewidth]{config/logos/logo_um.png}
+\end{minipage}\par
+
+\vspace{1cm plus 1fill}
+\miUbicacion, \miFecha
 
 \end{titlepage}
-
-% Restaurar márgenes originales del documento
-\restoregeometry
